@@ -1,0 +1,48 @@
+---
+// iarandu wordmark, inlined as SVG so the "iarandu" text renders in the real
+// loaded Fraunces (an <img> SVG can't access page @font-face, falling back to
+// Times). Geometry (urucum pebble + underline) matches the brand asset exactly.
+interface Props {
+  tone?: "ink" | "cream"; // "ink": randu in nanquim (light bg); "cream": all cream (dark bg)
+  height?: number;
+  class?: string;
+}
+const { tone = "ink", height = 34, class: className } = Astro.props;
+const randu = tone === "cream" ? "#F4EFE6" : "#1F2D3D";
+const maskId = `iarandu-tittle-${tone}`;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 800 200"
+  role="img"
+  aria-label="iarandu"
+  style={`height:${height}px;width:auto;display:block`}
+>
+  <defs>
+    <mask id={maskId}>
+      <rect x="0" y="0" width="800" height="200" fill="white"></rect>
+      <rect x="22" y="18.16" width="54.72" height="30.4" fill="black"></rect>
+    </mask>
+  </defs>
+  <g transform="translate(24 39.44) scale(1.52)">
+    <path
+      d="M -10 48 C -12 15, 22 -8, 54 -6 C 92 -2, 114 22, 108 52 C 114 80, 90 102, 56 100 C 22 98, -8 88, -10 48 Z"
+      fill="#C4603C"></path>
+    <path
+      d="M 280 84 C 320 82, 380 84, 416 86 C 422 86, 422 92, 416 92 C 380 94, 318 94, 280 92 C 274 92, 274 84, 280 84 Z"
+      fill="#C4603C"></path>
+  </g>
+  <text
+    x="24"
+    y="158"
+    font-family="Fraunces, Georgia, serif"
+    font-weight="700"
+    font-size="152"
+    letter-spacing="-5.32"
+    style="font-variation-settings: 'opsz' 144;"
+    mask={`url(#${maskId})`}
+  >
+    <tspan fill="#F4EFE6">ia</tspan><tspan fill={randu}>randu</tspan>
+  </text>
+</svg>

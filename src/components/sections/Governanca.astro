@@ -1,0 +1,85 @@
+---
+// Governanca — dark, premium enterprise-trust band.
+// Surface: ink-deep + on-ink remap. Four reveal-scale cards. Subtle floating
+// seeds at low opacity. Brand is always "iarandu".
+---
+
+<section id="governanca" class="governanca surface-ink-deep on-ink sec">
+  <div class="gov-seeds" aria-hidden="true">
+    <span class="seed float-slow" style="width:160px;height:160px;top:12%;left:6%;opacity:.07;"></span>
+    <span class="seed float" style="width:90px;height:90px;bottom:14%;right:9%;opacity:.06;background:var(--verde-leaf);"></span>
+  </div>
+
+  <div class="wrap gov-inner">
+    <header class="gov-head">
+      <div class="badge reveal">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Governança &amp; Segurança
+      </div>
+      <h2 class="h2 gov-h" data-words>IA pronta para auditoria.</h2>
+      <p class="body-lg measure-tight gov-lead reveal" style="transition-delay:120ms;">
+        Trabalhamos para a TI, com os padrões da TI. A banda extra de produção
+        que o seu CTO gostaria de ter, sem disputar a fila.
+      </p>
+    </header>
+
+    <div class="gov-grid">
+      <article class="card gov-card reveal-scale" style="transition-delay:80ms;">
+        <h3 class="h3">Protocolo de Hiroshima</h3>
+        <p class="body">
+          Princípios internacionais de governança de IA orientam cada iniciativa.
+        </p>
+      </article>
+
+      <article class="card gov-card reveal-scale" style="transition-delay:180ms;">
+        <h3 class="h3">GDPR</h3>
+        <p class="body">
+          Privacidade e proteção de dados no padrão europeu, por desenho.
+        </p>
+      </article>
+
+      <article class="card gov-card reveal-scale" style="transition-delay:280ms;">
+        <h3 class="h3">EU AI Act</h3>
+        <p class="body">
+          Classificação de risco e conformidade com a lei de IA da União Europeia.
+        </p>
+      </article>
+
+      <article class="card gov-card reveal-scale" style="transition-delay:380ms;">
+        <h3 class="h3">Zero Trust</h3>
+        <p class="body">
+          Cybersecurity com Zero Trust como padrão. Nada é confiável por padrão,
+          tudo é verificado.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .governanca { position: relative; overflow: hidden; isolation: isolate; }
+  .gov-seeds { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .gov-seeds .seed { position: absolute; filter: blur(3px); }
+  .gov-inner { position: relative; z-index: 1; }
+
+  .gov-head { max-width: 52rem; }
+  .gov-h { margin: 18px 0 0; }
+  .gov-lead { margin: 22px 0 0; }
+
+  .gov-grid {
+    margin-top: clamp(40px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 720px) {
+    .gov-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1080px) {
+    .gov-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .gov-card { display: flex; flex-direction: column; gap: 12px; }
+  .gov-card h3 { margin: 0; color: var(--inv); }
+  .gov-card .body { margin: 0; }
+</style>

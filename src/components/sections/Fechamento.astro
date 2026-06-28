@@ -1,0 +1,64 @@
+---
+import Aurora from "../islands/Aurora.tsx";
+import { BOOKING_URL, CONTACT_EMAIL, CAL_LINK, CAL_NAMESPACE } from "../../config";
+---
+
+<section id="vamos" class="fechamento grain" aria-labelledby="fechamento-h">
+  <div class="aurora-host" aria-hidden="true">
+    <Aurora client:visible density={5} intensity={0.7} />
+  </div>
+  <span class="seed float" aria-hidden="true" style="width:120px;height:120px;top:18%;left:10%;opacity:.16;filter:blur(2px);"></span>
+  <span class="seed float-slow" aria-hidden="true" style="width:180px;height:180px;bottom:8%;right:8%;opacity:.12;filter:blur(2px);"></span>
+
+  <div class="wrap-narrow fechamento-inner">
+    <div class="badge reveal">
+      <span class="badge-dot" aria-hidden="true"></span>
+      Comece pelo diagnóstico
+    </div>
+    <h2 id="fechamento-h" class="display-xl fechamento-h" data-words>
+      A IA da sua área começa com um <span class="text-warm">diagnóstico</span>.
+    </h2>
+    <p class="body-lg measure-tight fechamento-sub reveal" style="transition-delay:140ms;">
+      Um retrato honesto de onde a IA rende mais para a sua área, e o primeiro
+      caso em operação com ganho medido. É assim que começa.
+    </p>
+    <div class="fechamento-cta reveal" style="transition-delay:240ms;">
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary"
+        data-cal-namespace={CAL_NAMESPACE}
+        data-cal-link={CAL_LINK}
+        data-cal-config='{"layout":"month_view"}'
+      >
+        Agende um diagnóstico
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a href={`mailto:${CONTACT_EMAIL}`} class="btn-ghost">we@iarandu.tech</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fechamento {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding-block: clamp(120px, 16vw, 220px);
+    text-align: center;
+    background:
+      radial-gradient(100% 70% at 50% 100%, color-mix(in oklab, var(--urucum-soft) 26%, transparent), transparent 60%),
+      var(--papel);
+  }
+  .fechamento-inner { position: relative; z-index: 2; }
+  .fechamento-h { margin: 18px auto 0; max-width: 16ch; }
+  .fechamento-sub { margin: 26px auto 0; }
+  .fechamento-cta {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+</style>

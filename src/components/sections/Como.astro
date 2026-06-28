@@ -1,0 +1,101 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Diagnóstico",
+    body: "Um retrato honesto de dados e IA: o que dá para fazer hoje, onde estão os riscos, e o caso que rende mais.",
+  },
+  {
+    n: "02",
+    title: "Caso em operação",
+    body: "Construímos um caso real, em produção, com a mecânica de medição definida. Evidência, não promessa.",
+  },
+  {
+    n: "03",
+    title: "Time autônomo",
+    body: "O seu time co-executa e assume o volante. A cada mês, menos dependência de fornecedor.",
+  },
+];
+---
+
+<section id="como" class="surface-ink on-ink sec como">
+  <div class="wrap como-inner">
+    <header class="como-head">
+      <div class="badge reveal">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Como funciona
+      </div>
+      <h2 class="h2 como-h" data-words>
+        Agentes assumem o trabalho bruto. O seu time fica com a decisão.
+      </h2>
+      <p class="body-lg measure como-intro reveal" style="transition-delay:120ms;">
+        Nenhum processo crítico roda sem supervisão humana. Decisão e
+        responsabilidade explícitas e auditáveis. O agente faz o trabalho
+        repetitivo; o seu time decide.
+      </p>
+    </header>
+
+    <div class="como-steps">
+      <!-- flowing connector line behind the steps -->
+      <svg class="river como-river" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M40 20 H1160" />
+        <path class="flow" d="M40 20 H1160" />
+      </svg>
+
+      {steps.map((s, i) => (
+        <article class="como-step reveal" style={`transition-delay:${i * 140}ms;`}>
+          <span class="como-num">{s.n}</span>
+          <h3 class="h3 como-step-title">{s.title}</h3>
+          <p class="body como-step-body">{s.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .como { position: relative; overflow: hidden; isolation: isolate; }
+  .como-inner { position: relative; z-index: 1; }
+
+  .como-head { max-width: 60ch; }
+  .como-h { margin: 18px 0 0; max-width: 26ch; }
+  .como-intro { margin: 24px 0 0; }
+
+  .como-steps {
+    position: relative;
+    margin-top: clamp(48px, 6vw, 80px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  @media (min-width: 768px) {
+    .como-steps { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  }
+
+  .como-river {
+    display: none;
+    position: absolute;
+    top: 38px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: 0;
+  }
+  @media (min-width: 768px) {
+    .como-river { display: block; }
+  }
+
+  .como-step { position: relative; z-index: 1; }
+  .como-num {
+    display: block;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 700;
+    font-variation-settings: "opsz" 144, "SOFT" 40;
+    font-size: clamp(56px, 6vw, 92px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--urucum);
+  }
+  .como-step-title { margin: 18px 0 0; }
+  .como-step-body { margin: 12px 0 0; }
+</style>

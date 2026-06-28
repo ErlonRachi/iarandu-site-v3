@@ -1,0 +1,115 @@
+---
+// Industrias — regulated-industries proof of capability.
+// Surface: cream. Four cards (sector chip · industry name · body), last is the
+// "your industry" invitation. Brand is always "iarandu". Never name the client.
+---
+
+<section id="industrias" class="industrias surface-cream sec">
+  <div class="wrap">
+    <header class="ind-head">
+      <div class="badge reveal">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Indústrias
+      </div>
+      <h2 class="h2 ind-h" data-words>Trabalhamos com empresas onde falhar não é uma opção.</h2>
+      <p class="body-lg measure ind-intro reveal" style="transition-delay:120ms;">
+        Não aprendemos compliance no seu projeto. Já operamos sob o rigor de
+        setores onde a margem de erro é mínima.
+      </p>
+    </header>
+
+    <div class="ind-grid">
+      <article class="card ind-card reveal" style="transition-delay:80ms;">
+        <span class="chip">Radiofármacos e farmacêutica</span>
+        <h3 class="h3 ind-name">Radiofármacos e indústrias farmacêuticas</h3>
+        <p class="body">
+          Dados, nuvem e IA analítica para empresas sob forte rigor regulatório,
+          do licenciamento à rastreabilidade. Cada etapa precisa ser auditável.
+        </p>
+      </article>
+
+      <article class="card ind-card reveal" style="transition-delay:180ms;">
+        <span class="chip">Serviços financeiros</span>
+        <h3 class="h3 ind-name">Gestão de investimentos</h3>
+        <p class="body">
+          Governança e aumento de maturidade no uso de IA para servir fundos de
+          investimento e as empresas investidas. Identificação precoce de
+          tendências e capacitação de time interno.
+        </p>
+      </article>
+
+      <article class="card ind-card reveal" style="transition-delay:280ms;">
+        <span class="chip">Software</span>
+        <h3 class="h3 ind-name">Monitoramento de Desenvolvimento e Implementação</h3>
+        <p class="body">
+          Implementação de adequação à reforma tributária, com acompanhamento do
+          desenvolvimento via IA e detecção de anomalias ao longo do fluxo.
+        </p>
+      </article>
+
+      <article class="card ind-card ind-card-invite reveal" style="transition-delay:380ms;">
+        <span class="seed float-slow ind-card-seed" aria-hidden="true"></span>
+        <span class="chip">A sua indústria</span>
+        <h3 class="h3 ind-name">Opera sob risco regulatório?</h3>
+        <p class="body">
+          Se compliance e governança não são opcionais no seu setor, é
+          exatamente onde entregamos melhor.
+        </p>
+        <a href="#vamos" class="btn-ghost ind-invite-cta">
+          Vamos conversar
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ind-head { max-width: 56rem; }
+  .ind-h { margin: 18px 0 0; }
+  .ind-intro { margin: 22px 0 0; }
+
+  .ind-grid {
+    margin-top: clamp(40px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 720px) {
+    .ind-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .ind-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .ind-name { margin: 0; }
+  .ind-card .body { margin: 0; }
+
+  /* Invitation card — warmer ground, urucum accent (one per section) */
+  .ind-card-invite {
+    background:
+      radial-gradient(140% 120% at 100% 0%, color-mix(in oklab, var(--urucum-soft) 26%, transparent), transparent 58%),
+      var(--papel-soft);
+    border-color: var(--line-strong);
+  }
+  .ind-card-invite .chip {
+    border-color: color-mix(in oklab, var(--urucum) 40%, transparent);
+    color: var(--urucum);
+  }
+  .ind-card-seed {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: -28px;
+    bottom: -28px;
+    opacity: 0.16;
+    filter: blur(2px);
+    pointer-events: none;
+  }
+  .ind-invite-cta { margin-top: 6px; }
+  .ind-invite-cta .arrow { transition: transform 240ms var(--ease-spring); }
+  .ind-invite-cta:hover .arrow { transform: translateX(5px); }
+</style>

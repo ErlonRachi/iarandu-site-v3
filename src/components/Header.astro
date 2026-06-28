@@ -1,0 +1,92 @@
+---
+import { BOOKING_URL, CAL_LINK, CAL_NAMESPACE } from "../config";
+import BrandLogo from "./BrandLogo.astro";
+---
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-inner">
+    <a href="#top" class="hdr-brand" aria-label="iarandu, início">
+      <BrandLogo tone="ink" height={34} class="hdr-logo" />
+    </a>
+
+    <nav class="hdr-nav" aria-label="Seções">
+      <a href="#plataforma" class="link-u">Plataforma</a>
+      <a href="#industrias" class="link-u">Indústrias</a>
+      <a href="#depoimentos" class="link-u">Depoimentos</a>
+      <a href="#socios" class="link-u">Quem somos</a>
+    </nav>
+
+    <a
+      href={BOOKING_URL}
+      target="_blank"
+      rel="noopener"
+      class="hdr-cta"
+      data-cal-namespace={CAL_NAMESPACE}
+      data-cal-link={CAL_LINK}
+      data-cal-config='{"layout":"month_view"}'
+    >
+      Agende um diagnóstico
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    transition: background-color 320ms var(--ease), border-color 320ms var(--ease),
+      backdrop-filter 320ms var(--ease), box-shadow 320ms var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .hdr.stuck {
+    background: color-mix(in oklab, var(--papel) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom-color: var(--line);
+    box-shadow: 0 10px 30px -24px rgba(31, 45, 61, 0.5);
+  }
+  .hdr-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 80px;
+  }
+  .hdr-brand { display: inline-flex; align-items: center; }
+  .hdr-brand img { height: 34px; width: auto; display: block; }
+  .hdr-nav {
+    display: none;
+    gap: 32px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 940px) {
+    .hdr-nav { display: flex; }
+  }
+  .hdr-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--papel-soft);
+    background: var(--nanquim);
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background-color 200ms var(--ease), transform 220ms var(--ease-spring);
+  }
+  .hdr-cta:hover { background: var(--urucum); transform: translateY(-1px); }
+  .hdr-cta .arrow { transition: transform 220ms var(--ease-spring); }
+  .hdr-cta:hover .arrow { transform: translateX(4px); }
+</style>
+
+<script>
+  const hdr = document.getElementById("hdr");
+  const onScroll = () => hdr?.classList.toggle("stuck", window.scrollY > 20);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

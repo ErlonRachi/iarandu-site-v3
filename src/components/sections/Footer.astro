@@ -1,0 +1,80 @@
+---
+import { CITIES, LINKEDIN_URL, CONTACT_EMAIL } from "../../config";
+import BrandLogo from "../BrandLogo.astro";
+---
+
+<footer class="ft surface-ink-deep on-ink">
+  <div class="wrap ft-inner">
+    <div class="ft-brand">
+      <BrandLogo tone="cream" height={38} class="ft-logo" />
+      <p class="body-sm ft-tag">
+        A camada de IA que a sua área de negócio precisa, com a governança que a
+        sua empresa exige.
+      </p>
+    </div>
+
+    <div class="ft-cols">
+      <div class="ft-col">
+        <span class="label">Presença</span>
+        <ul>
+          {CITIES.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+      <div class="ft-col">
+        <span class="label">Navegar</span>
+        <ul>
+          <li><a href="#plataforma" class="link-u">Plataforma</a></li>
+          <li><a href="#industrias" class="link-u">Indústrias</a></li>
+          <li><a href="#depoimentos" class="link-u">Depoimentos</a></li>
+          <li><a href="#socios" class="link-u">Quem somos</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <span class="label">Contato</span>
+        <ul>
+          <li><a href={`mailto:${CONTACT_EMAIL}`} class="link-u">we@iarandu.tech</a></li>
+          <li><a href={LINKEDIN_URL} target="_blank" rel="noopener" class="link-u">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ft-base">
+    <span class="body-sm">© 2026 iarandu</span>
+    <span class="body-sm">São Paulo · Milano</span>
+  </div>
+</footer>
+
+<style>
+  .ft { padding-block: 80px 36px; }
+  .ft-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  @media (min-width: 860px) {
+    .ft-inner { grid-template-columns: 1.4fr 2fr; gap: 64px; }
+  }
+  .ft-logo { height: 38px; width: auto; display: block; }
+  .ft-tag { margin: 20px 0 0; max-width: 36ch; color: var(--inv-soft); }
+  .ft-cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  @media (min-width: 560px) {
+    .ft-cols { grid-template-columns: repeat(3, 1fr); }
+  }
+  .ft-col ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+  .ft-col li { font-size: 15px; color: var(--inv-soft); }
+  .ft-base {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--inv-line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .ft-base .body-sm { color: var(--inv-muted); }
+</style>

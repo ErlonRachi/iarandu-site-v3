@@ -1,0 +1,186 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import { CAL_NAMESPACE } from "../config";
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "iarandu · a camada de IA que a sua área de negócio precisa",
+  description =
+    "Construímos a camada de IA que a sua área de negócio precisa, de forma governada, com padrões globais de referência e complementando a sua TI. Soluções para empresas em setores críticos e regulados.",
+  noindex = false,
+} = Astro.props;
+
+const canonicalHref = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/brand/iarandu-avatar-transparente.svg" />
+    <link rel="canonical" href={canonicalHref} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta name="theme-color" content="#F4EFE6" />
+
+    <title>{title}</title>
+  </head>
+  <body id="top">
+    <!-- scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-bar"></span></div>
+
+    <Header />
+
+    <!-- Cal.com embed: "Agende um diagnóstico" opens an in-page modal -->
+    <script is:inline define:vars={{ ns: CAL_NAMESPACE }}>
+      (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+          let cal = C.Cal; let ar = arguments;
+          if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+          if (ar[0] === L) {
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+            else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", ns, { origin: "https://cal.com" });
+      Cal.ns[ns]("ui", {
+        hideEventTypeDetails: false,
+        layout: "month_view",
+        theme: "light",
+        styles: { branding: { brandColor: "#C4603C" } },
+      });
+
+      // Open the booking modal over the site. Falls back to the link (new tab)
+      // only if Cal hasn't loaded yet.
+      document.addEventListener("click", function (e) {
+        const el = e.target.closest("[data-cal-link]");
+        if (!el) return;
+        if (window.Cal && window.Cal.ns && window.Cal.ns[ns]) {
+          e.preventDefault();
+          window.Cal.ns[ns]("modal", {
+            calLink: el.getAttribute("data-cal-link"),
+            config: { layout: "month_view" },
+          });
+        }
+      });
+    </script>
+
+    <slot />
+
+    <style>
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        z-index: 60;
+        background: transparent;
+        pointer-events: none;
+      }
+      .scroll-progress span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--urucum), var(--urucum-bright), var(--verde-leaf));
+        box-shadow: 0 0 12px var(--urucum-glow);
+        transition: width 80ms linear;
+      }
+    </style>
+
+    <script>
+      // --- word splitter for [data-words] ---
+      document.querySelectorAll<HTMLElement>("[data-words]").forEach((el) => {
+        const children = Array.from(el.childNodes);
+        el.textContent = "";
+        let i = 0;
+        children.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            (node.textContent ?? "").split(/(\s+)/).forEach((part) => {
+              if (part.trim().length === 0) el.appendChild(document.createTextNode(part));
+              else {
+                const s = document.createElement("span");
+                s.className = "word";
+                s.style.setProperty("--i", String(i++));
+                s.textContent = part;
+                el.appendChild(s);
+              }
+            });
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const s = document.createElement("span");
+            s.className = "word";
+            s.style.setProperty("--i", String(i++));
+            s.appendChild(node);
+            el.appendChild(s);
+          }
+        });
+      });
+
+      // --- reveal engine ---
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-in");
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
+      );
+      document
+        .querySelectorAll("[data-words], .reveal, .reveal-l, .reveal-r, .reveal-scale")
+        .forEach((el) => io.observe(el));
+
+      // --- scroll progress bar ---
+      const bar = document.getElementById("scroll-bar");
+      const onScroll = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const p = max > 0 ? (window.scrollY / max) * 100 : 0;
+        if (bar) bar.style.width = p + "%";
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // --- magnetic glow: feed --mx/--my to buttons & cards under the pointer ---
+      const glowTargets = document.querySelectorAll<HTMLElement>(".btn-primary, .card");
+      glowTargets.forEach((el) => {
+        el.addEventListener("pointermove", (ev) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty("--mx", `${ev.clientX - r.left}px`);
+          el.style.setProperty("--my", `${ev.clientY - r.top}px`);
+        });
+      });
+    </script>
+  </body>
+</html>

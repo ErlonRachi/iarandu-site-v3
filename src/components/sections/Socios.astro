@@ -1,0 +1,120 @@
+---
+// Socios — "Quem somos". The team: 30+ combined years, AI-native by construction.
+// Surface: cream. Three partner cards with a monogram pebble each (no people
+// photos available). Brand is always "iarandu".
+import { LINKEDIN_URL } from "../../config";
+
+const partners = [
+  {
+    initials: "DC",
+    name: "Eduardo “Duda” Campos",
+    role: "Produtos digitais e IA",
+    bio: "Executivo de Produto, mais de 16 anos de experiência. Passagem por Mercado Livre, Coca-Cola, Centauro e TOTVS.",
+  },
+  {
+    initials: "MR",
+    name: "Mauro Rezende",
+    role: "Plataforma e Operações",
+    bio: "Mais de 15 anos de liderança em tecnologia. Passagem por Google Cloud e YouTube.",
+  },
+  {
+    initials: "ER",
+    name: "Erlon Rachi",
+    role: "Dados e Machine Learning",
+    bio: "Matemático Aplicado e Cientista de Dados, 18 anos de experiência em produtos de dados. Passagem por Kaizen Gaming (Betano) e CI&T.",
+  },
+];
+---
+
+<section id="socios" class="socios surface-cream sec">
+  <div class="wrap">
+    <header class="socios-head">
+      <div class="badge reveal">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Quem somos
+      </div>
+      <h2 class="h2 socios-h" data-words>
+        Mais de <span class="text-warm">30 anos</span> combinados. AI-native por construção.
+      </h2>
+      <p class="body-lg measure socios-intro reveal" style="transition-delay:120ms;">
+        Menos de um ano de iarandu. Mais de três décadas de ofício em dado e IA,
+        e 30 perfis no time, nem todos humanos.
+      </p>
+    </header>
+
+    <div class="socios-grid">
+      {partners.map((p, i) => (
+        <article class="card socios-card reveal" style={`transition-delay:${80 + i * 100}ms;`}>
+          <span class="socios-pebble" aria-hidden="true">{p.initials}</span>
+          <h3 class="h3 socios-name">{p.name}</h3>
+          <span class="label socios-role">{p.role}</span>
+          <p class="body socios-bio">{p.bio}</p>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener"
+            class="link-u socios-link"
+          >LinkedIn</a>
+        </article>
+      ))}
+    </div>
+
+    <p class="body-sm socios-origins reveal" style="transition-delay:120ms;">
+      CI&amp;T · Google · USP · Unicamp e outras casas onde dado e IA são ofício.
+      São Paulo · Milano.
+    </p>
+  </div>
+</section>
+
+<style>
+  .socios-head { max-width: 56rem; }
+  .socios-h { margin: 18px 0 0; }
+  .socios-intro { margin: 22px 0 0; }
+
+  .socios-grid {
+    margin-top: clamp(40px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 820px) {
+    .socios-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .socios-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* Monogram pebble — brand seed shape, urucum-tinted, 1px border */
+  .socios-pebble {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 8px;
+    border-radius: 64% 36% 57% 43% / 47% 56% 44% 53%;
+    border: 1px solid color-mix(in oklab, var(--urucum) 40%, transparent);
+    background:
+      radial-gradient(120% 120% at 30% 20%, color-mix(in oklab, var(--urucum-soft) 34%, transparent), transparent 70%),
+      var(--papel);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: var(--urucum);
+  }
+
+  .socios-name { margin: 0; }
+  .socios-role { color: var(--ink-muted); }
+  .socios-bio { margin: 4px 0 0; }
+  .socios-link { margin-top: 8px; font-weight: 600; font-size: 15px; }
+
+  .socios-origins {
+    margin-top: clamp(32px, 4vw, 48px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+</style>

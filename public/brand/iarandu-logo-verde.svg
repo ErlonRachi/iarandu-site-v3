@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200" role="img" aria-label="iarandu">
+  <defs>
+    
+    <mask id="hideTittle">
+      <rect x="0" y="0" width="800" height="200" fill="white"></rect>
+      <rect x="22" y="18.159999999999997" width="54.72" height="30.400000000000002" fill="black"></rect>
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="800" height="200" fill="#3D4E3A"></rect>
+  <g transform="translate(24 39.44) scale(1.52)">
+    <path d="M -10 48 C -12 15, 22 -8, 54 -6 C 92 -2, 114 22, 108 52 C 114 80, 90 102, 56 100 C 22 98, -8 88, -10 48 Z" fill="#C4603C"></path>
+    <path d="M 280 84 C 320 82, 380 84, 416 86 C 422 86, 422 92, 416 92 C 380 94, 318 94, 280 92 C 274 92, 274 84, 280 84 Z" fill="#C4603C"></path>
+  </g>
+  <text x="24" y="158" font-family="Fraunces, &#39;Times New Roman&#39;, Georgia, serif" font-weight="700" font-size="152" letter-spacing="-5.32" style="font-variation-settings: &#39;opsz&#39; 144;" mask="url(#hideTittle)">
+    <tspan fill="#F4EFE6">ia</tspan><tspan fill="#F4EFE6">randu</tspan>
+  </text>
+</svg>

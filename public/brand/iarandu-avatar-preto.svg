@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="iarandu avatar">
+  <defs>
+    
+    <mask id="hideTittle">
+      <rect x="0" y="0" width="400" height="400" fill="white"></rect>
+      <rect x="93" y="59.19999999999999" width="86.39999999999999" height="48" fill="black"></rect>
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="400" height="400" fill="#000000"></rect>
+  <g transform="translate(95 92.79999999999998) scale(2.4)">
+    <path d="M -10 48 C -12 15, 22 -8, 54 -6 C 92 -2, 114 22, 108 52 C 114 80, 90 102, 56 100 C 22 98, -8 88, -10 48 Z" fill="#C4603C"></path>
+  </g>
+  <text x="95" y="280" font-family="Fraunces, &#39;Times New Roman&#39;, Georgia, serif" font-weight="700" font-size="240" letter-spacing="-8.40" fill="#F4EFE6" style="font-variation-settings: &#39;opsz&#39; 144;" mask="url(#hideTittle)">ia</text>
+</svg>

@@ -1,0 +1,55 @@
+---
+// Enterprise stat band — animated counters on a deep nanquim ground, right under
+// the hero. The numbers count up when scrolled into view (CountUp island).
+import CountUp from "../islands/CountUp.tsx";
+
+const stats = [
+  { to: 30, suffix: "+", label: "anos de experiência combinada" },
+  { to: 3, suffix: "", label: "setores críticos atendidos" },
+  { to: 30, suffix: "", label: "perfis no time, nem todos humanos" },
+  { to: 2, suffix: "", label: "sedes · São Paulo e Milano" },
+];
+---
+
+<section class="statband surface-ink-deep on-ink" aria-label="iarandu em números">
+  <div class="wrap statband-inner">
+    {
+      stats.map((s, i) => (
+        <div class="stat reveal" style={`transition-delay:${i * 90}ms`}>
+          <CountUp client:visible to={s.to} suffix={s.suffix} />
+          <p class="stat-label">{s.label}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .statband { padding-block: 64px; position: relative; }
+  .statband-inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 24px;
+  }
+  @media (min-width: 880px) {
+    .statband-inner { grid-template-columns: repeat(4, 1fr); }
+  }
+  .stat { position: relative; }
+  .stat::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 26px;
+    height: 3px;
+    background: var(--urucum);
+    border-radius: 2px;
+  }
+  .stat-label {
+    margin: 14px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--inv-soft);
+    max-width: 22ch;
+  }
+</style>

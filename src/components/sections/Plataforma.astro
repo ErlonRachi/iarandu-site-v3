@@ -1,0 +1,93 @@
+---
+const cards = [
+  {
+    n: "01",
+    title: "Agentes que trabalham",
+    body: "Agentes de IA assumem o trabalho repetitivo e otimizam a execução: copiam, reconciliam e traduzem dados entre sistemas que não conversam. Funcionando de verdade, não no slide.",
+  },
+  {
+    n: "02",
+    title: "Camada de dados governada",
+    body: "Organizamos dados dispersos em informação acionável e auditável, pronta para IA. Tudo com a TI e seguindo os padrões da TI.",
+  },
+  {
+    n: "03",
+    title: "Governança de IA",
+    body: "Controle de acesso, isolamento e rastreabilidade desde o primeiro dia. Alinhada ao Protocolo de Hiroshima, à GDPR e à EU AI Act.",
+  },
+  {
+    n: "04",
+    title: "Capacitação do time",
+    body: "Treinamos seu time e melhoramos seu processo. O sucesso da adoção de IA é o seu time tomar posse dos benefícios, sem dependência.",
+  },
+];
+---
+
+<section id="plataforma" class="surface-soft sec plataforma">
+  <!-- ambient brand seeds -->
+  <div class="plat-seeds" aria-hidden="true">
+    <span class="seed float-slow" style="width:180px;height:180px;top:8%;right:6%;opacity:.08;"></span>
+    <span class="seed float" style="width:90px;height:90px;bottom:12%;left:5%;opacity:.07;background:var(--verde-leaf);"></span>
+  </div>
+
+  <div class="wrap plat-inner">
+    <header class="plat-head">
+      <div class="badge reveal">
+        <span class="badge-dot" aria-hidden="true"></span>
+        A plataforma
+      </div>
+      <h2 class="h2 plat-h" data-words>
+        Tudo o que a sua área de negócio precisa para ter IA no seu dia a dia.
+      </h2>
+    </header>
+
+    <div class="plat-grid">
+      {cards.map((c, i) => (
+        <article class="card plat-card reveal-scale" style={`transition-delay:${i * 110}ms;`}>
+          <span class="plat-index">{c.n}</span>
+          <h3 class="h3 plat-card-title">{c.title}</h3>
+          <p class="body plat-card-body">{c.body}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="body-lg plat-note reveal">
+      Você usa o produto rodando na nossa plataforma ou na sua, sempre seguindo a
+      segurança, as regras e os padrões da sua TI. Acompanhamos todo o processo
+      como um advisor que põe a mão na massa, adaptando os agentes de IA aos
+      padrões da sua empresa.
+    </p>
+  </div>
+</section>
+
+<style>
+  .plataforma { position: relative; overflow: hidden; isolation: isolate; }
+  .plat-seeds { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .plat-seeds .seed { position: absolute; filter: blur(2px); }
+  .plat-inner { position: relative; z-index: 1; }
+
+  .plat-head { max-width: 30ch; }
+  .plat-h { margin: 22px 0 0; max-width: 24ch; }
+  .plat-note { margin: clamp(32px, 4vw, 48px) 0 0; max-width: 64ch; color: var(--ink-soft); }
+
+  .plat-grid {
+    margin-top: clamp(40px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 768px) {
+    .plat-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+
+  .plat-card { display: flex; flex-direction: column; min-height: 240px; }
+  .plat-index {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--urucum);
+  }
+  .plat-card-title { margin: 22px 0 0; }
+  .plat-card-body { margin: 12px 0 0; }
+</style>

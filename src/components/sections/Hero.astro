@@ -1,0 +1,108 @@
+---
+import Aurora from "../islands/Aurora.tsx";
+import { BOOKING_URL, CAL_LINK, CAL_NAMESPACE } from "../../config";
+---
+
+<section class="hero grain" aria-labelledby="hero-h">
+  <div class="aurora-host" aria-hidden="true">
+    <Aurora client:visible density={6} intensity={0.6} />
+  </div>
+
+  <!-- floating organic seeds (the brand pebble motif) -->
+  <div class="hero-seeds" aria-hidden="true">
+    <span class="seed float" style="width:130px;height:130px;top:18%;left:8%;opacity:.16;"></span>
+    <span class="seed float-slow" style="width:74px;height:74px;top:62%;left:14%;opacity:.12;background:var(--verde-leaf);"></span>
+    <span class="seed float-slow" style="width:200px;height:200px;top:12%;right:9%;opacity:.10;"></span>
+    <span class="seed float" style="width:54px;height:54px;bottom:16%;right:18%;opacity:.18;"></span>
+  </div>
+
+  <div class="wrap hero-inner">
+    <div class="badge reveal">
+      <span class="badge-dot" aria-hidden="true"></span>
+      Aceleramos o uso de IA em sua área
+    </div>
+
+    <h1 id="hero-h" class="display-2xl hero-h" data-words>
+      Construímos a <span class="text-warm">camada de IA</span> que a sua área de
+      negócio precisa.
+    </h1>
+
+    <p class="body-lg measure hero-sub reveal" style="transition-delay:140ms;">
+      Levamos IA para o dia a dia da sua área de negócio de forma governada, com
+      padrões globais de referência e complementando a sua TI. Onde errar não é
+      uma opção.
+    </p>
+
+    <div class="hero-cta reveal" style="transition-delay:240ms;">
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary"
+        data-cal-namespace={CAL_NAMESPACE}
+        data-cal-link={CAL_LINK}
+        data-cal-config='{"layout":"month_view"}'
+      >
+        Agende um diagnóstico
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="#depoimentos" class="btn-ghost">Veja os depoimentos</a>
+    </div>
+
+    <div class="hero-trust reveal" style="transition-delay:340ms;">
+      <span class="label">Soluções para empresas que operam em setores críticos e regulados</span>
+      <div class="hero-trust-row">
+        <span class="chip">Radiofármacos e farmacêutica</span>
+        <span class="chip">Serviços financeiros</span>
+        <span class="chip">Desenvolvimento de software</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll reveal" style="transition-delay:520ms;" aria-hidden="true">
+    <span></span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: 140px 80px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(120% 80% at 80% 0%, color-mix(in oklab, var(--urucum-soft) 22%, transparent), transparent 60%),
+      var(--papel);
+  }
+  .hero-inner { position: relative; z-index: 2; width: 100%; }
+  .hero-seeds { position: absolute; inset: 0; z-index: 1; }
+  .hero-seeds .seed { position: absolute; filter: blur(2px); }
+
+  .hero-h { margin: 24px 0 0; max-width: 20ch; }
+  .hero-sub { margin: 28px 0 0; }
+  .hero-cta { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .hero-trust { margin-top: clamp(44px, 6vw, 76px); }
+  .hero-trust-row { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .hero-scroll { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 2; }
+  .hero-scroll span {
+    display: block;
+    width: 1px;
+    height: 46px;
+    margin: 0 auto;
+    background: linear-gradient(var(--urucum), transparent);
+    animation: scrolldrop 2.2s var(--ease) infinite;
+  }
+  @keyframes scrolldrop {
+    0% { transform: scaleY(0); transform-origin: top; }
+    40% { transform: scaleY(1); transform-origin: top; }
+    60% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll span { animation: none; }
+  }
+</style>
