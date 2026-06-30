@@ -1,6 +1,5 @@
 ---
 import Aurora from "../islands/Aurora.tsx";
-import { BOOKING_URL, CAL_LINK, CAL_NAMESPACE } from "../../config";
 ---
 
 <section class="hero grain" aria-labelledby="hero-h">
@@ -17,40 +16,18 @@ import { BOOKING_URL, CAL_LINK, CAL_NAMESPACE } from "../../config";
   </div>
 
   <div class="wrap hero-inner">
-    <div class="badge reveal">
-      <span class="badge-dot" aria-hidden="true"></span>
-      Aceleramos o uso de IA em sua área
-    </div>
-
     <h1 id="hero-h" class="display-2xl hero-h" data-words>
       Construímos a <span class="text-warm">camada de IA</span> que a sua área de
       negócio precisa.
     </h1>
 
     <p class="body-lg measure hero-sub reveal" style="transition-delay:140ms;">
-      Levamos IA para o dia a dia da sua área de negócio de forma governada, com
-      padrões globais de referência e complementando a sua TI. Onde errar não é
-      uma opção.
+      Complementamos sua área de tecnologia, entregamos IA para sua área de
+      negócio seguindo padrões, pipelines e arquitetura homologados.
     </p>
 
-    <div class="hero-cta reveal" style="transition-delay:240ms;">
-      <a
-        href={BOOKING_URL}
-        target="_blank"
-        rel="noopener"
-        class="btn-primary"
-        data-cal-namespace={CAL_NAMESPACE}
-        data-cal-link={CAL_LINK}
-        data-cal-config='{"layout":"month_view"}'
-      >
-        Agende um diagnóstico
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
-      <a href="#depoimentos" class="btn-ghost">Veja os depoimentos</a>
-    </div>
-
     <div class="hero-trust reveal" style="transition-delay:340ms;">
-      <span class="label">Soluções para empresas que operam em setores críticos e regulados</span>
+      <span class="label">Somos especializados em aplicações críticas para setores de alta regulação e performance</span>
       <div class="hero-trust-row">
         <span class="chip">Radiofármacos e farmacêutica</span>
         <span class="chip">Serviços financeiros</span>
@@ -83,7 +60,6 @@ import { BOOKING_URL, CAL_LINK, CAL_NAMESPACE } from "../../config";
 
   .hero-h { margin: 24px 0 0; max-width: 20ch; }
   .hero-sub { margin: 28px 0 0; }
-  .hero-cta { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
   .hero-trust { margin-top: clamp(44px, 6vw, 76px); }
   .hero-trust-row { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
 
