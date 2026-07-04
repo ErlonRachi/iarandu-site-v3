@@ -2,16 +2,19 @@
 // Enterprise stat band — animated counters on a deep nanquim ground, right under
 // the hero. The numbers count up when scrolled into view (CountUp island).
 import CountUp from "../islands/CountUp.tsx";
+import { useTranslations, toLang } from "../../i18n/ui";
 
-const stats = [
-  { to: 5, suffix: "", label: "regimes regulatórios" },
-  { to: 3, suffix: "", label: "setores críticos atendidos" },
-  { to: 31, suffix: "", label: "perfis no time, nem todos humanos" },
-  { to: 2, suffix: "", label: "sedes · São Paulo e Milano" },
+const t = useTranslations(toLang(Astro.currentLocale)).stats;
+const nums = [
+  { to: 5, suffix: "" },
+  { to: 3, suffix: "" },
+  { to: 31, suffix: "" },
+  { to: 2, suffix: "" },
 ];
+const stats = nums.map((n, i) => ({ ...n, label: t.labels[i] }));
 ---
 
-<section class="statband surface-ink-deep on-ink" aria-label="iarandu em números">
+<section class="statband surface-ink-deep on-ink" aria-label={t.ariaLabel}>
   <div class="wrap statband-inner">
     {
       stats.map((s, i) => (

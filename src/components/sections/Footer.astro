@@ -1,36 +1,38 @@
 ---
-import { CITIES, LINKEDIN_URL, CONTACT_EMAIL } from "../../config";
+import { LINKEDIN_URL, CONTACT_EMAIL } from "../../config";
 import BrandLogo from "../BrandLogo.astro";
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const tr = useTranslations(toLang(Astro.currentLocale));
+const t = tr.footer;
+const nav = tr.nav;
 ---
 
 <footer class="ft surface-ink-deep on-ink">
   <div class="wrap ft-inner">
     <div class="ft-brand">
       <BrandLogo tone="cream" height={38} class="ft-logo" />
-      <p class="body-sm ft-tag">
-        A camada de IA que a sua área de negócio precisa, com a governança que a
-        sua empresa exige.
-      </p>
+      <p class="body-sm ft-tag">{t.tag}</p>
     </div>
 
     <div class="ft-cols">
       <div class="ft-col">
-        <span class="label">Presença</span>
+        <span class="label">{t.presence}</span>
         <ul>
-          {CITIES.map((c) => <li>{c}</li>)}
+          {t.cities.map((c) => <li>{c}</li>)}
         </ul>
       </div>
       <div class="ft-col">
-        <span class="label">Navegar</span>
+        <span class="label">{t.navigate}</span>
         <ul>
-          <li><a href="#plataforma" class="link-u">Plataforma</a></li>
-          <li><a href="#industrias" class="link-u">Indústrias</a></li>
-          <li><a href="#depoimentos" class="link-u">Depoimentos</a></li>
-          <li><a href="#socios" class="link-u">Quem somos</a></li>
+          <li><a href="#plataforma" class="link-u">{nav.plataforma}</a></li>
+          <li><a href="#industrias" class="link-u">{nav.industrias}</a></li>
+          <li><a href="#depoimentos" class="link-u">{nav.depoimentos}</a></li>
+          <li><a href="#socios" class="link-u">{nav.quemSomos}</a></li>
         </ul>
       </div>
       <div class="ft-col">
-        <span class="label">Contato</span>
+        <span class="label">{t.contact}</span>
         <ul>
           <li><a href={`mailto:${CONTACT_EMAIL}`} class="link-u">we@iarandu.tech</a></li>
           <li><a href={LINKEDIN_URL} target="_blank" rel="noopener" class="link-u">LinkedIn</a></li>
@@ -41,7 +43,7 @@ import BrandLogo from "../BrandLogo.astro";
 
   <div class="wrap ft-base">
     <span class="body-sm">© 2026 iarandu</span>
-    <span class="body-sm">São Paulo · Milano</span>
+    <span class="body-sm">{t.baseCities}</span>
   </div>
 </footer>
 

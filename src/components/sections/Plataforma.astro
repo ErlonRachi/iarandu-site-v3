@@ -1,26 +1,11 @@
 ---
-const cards = [
-  {
-    n: "01",
-    title: "Agentes que trabalham",
-    body: "Agentes de IA assumem o trabalho repetitivo e otimizam a execução: copiam, reconciliam e traduzem dados entre sistemas que não conversam. Funcionando de verdade, não no slide.",
-  },
-  {
-    n: "02",
-    title: "Camada de dados governada",
-    body: "Organizamos dados dispersos em informação acionável e auditável, pronta para IA. Tudo com a TI e seguindo os padrões da TI.",
-  },
-  {
-    n: "03",
-    title: "Governança de IA",
-    body: "Controle de acesso, isolamento e rastreabilidade desde o primeiro dia. Alinhada ao Protocolo de Hiroshima, à GDPR, à LGPD e à EU AI Act.",
-  },
-  {
-    n: "04",
-    title: "Capacitação do time",
-    body: "Treinamos seu time e melhoramos seu processo. O sucesso da adoção de IA é o seu time tomar posse dos benefícios, sem dependência.",
-  },
-];
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const t = useTranslations(toLang(Astro.currentLocale)).plataforma;
+const cards = t.cards.map((c, i) => ({
+  n: String(i + 1).padStart(2, "0"),
+  ...c,
+}));
 ---
 
 <section id="plataforma" class="surface-soft sec plataforma">
@@ -34,11 +19,9 @@ const cards = [
     <header class="plat-head">
       <div class="badge reveal">
         <span class="badge-dot" aria-hidden="true"></span>
-        A plataforma
+        {t.badge}
       </div>
-      <h2 class="h2 plat-h" data-words>
-        Tudo o que a sua área de negócio precisa para ter IA no seu dia a dia.
-      </h2>
+      <h2 class="h2 plat-h" data-words>{t.h}</h2>
     </header>
 
     <div class="plat-grid">
@@ -51,12 +34,7 @@ const cards = [
       ))}
     </div>
 
-    <p class="body-lg plat-note reveal">
-      Você usa o produto rodando na nossa plataforma ou na sua, sempre seguindo a
-      segurança, as regras e os padrões da sua TI. Acompanhamos todo o processo
-      como um advisor que põe a mão na massa, adaptando os agentes de IA aos
-      padrões da sua empresa.
-    </p>
+    <p class="body-lg plat-note reveal">{t.note}</p>
   </div>
 </section>
 

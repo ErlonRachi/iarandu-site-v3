@@ -1,7 +1,10 @@
 ---
 // Provas — the commercial trust engine. Real, named testimonials from people
 // who operate under risk. Surface: soft. First card is featured (spans wider)
-// for rhythm. Quotes are verbatim. Brand is always "iarandu".
+// for rhythm. Quotes are verbatim (translated per locale). Brand is always "iarandu".
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const t = useTranslations(toLang(Astro.currentLocale)).provas;
 ---
 
 <section id="depoimentos" class="provas surface-soft sec-lg">
@@ -9,53 +12,28 @@
     <header class="provas-head">
       <div class="badge reveal">
         <span class="badge-dot" aria-hidden="true"></span>
-        Depoimentos
+        {t.badge}
       </div>
-      <h2 class="h2 provas-h" data-words>O que dizem de quem trabalha com a gente.</h2>
+      <h2 class="h2 provas-h" data-words>{t.h}</h2>
       <p class="body-lg measure provas-intro reveal" style="transition-delay:120ms;">
-        Depoimentos de clientes reais. Os cases completos são apresentados sob NDA.
+        {t.intro}
       </p>
     </header>
 
     <div class="provas-grid">
-      <figure class="card provas-card provas-card-feat reveal" style="transition-delay:80ms;">
-        <span class="provas-quote" aria-hidden="true">&ldquo;</span>
-        <blockquote class="provas-text">
-          Trabalho excelente e de grande valor estratégico. A abordagem e as
-          entregas trazem a segurança e a clareza necessárias para os próximos
-          passos e para a implementação das equipes futuras.
-        </blockquote>
-        <figcaption class="provas-attr">
-          <span class="provas-name">Guilherme Jaime Dutra</span>
-          <span class="label provas-role">CGTI / ANSN</span>
-        </figcaption>
-      </figure>
-
-      <figure class="card provas-card reveal" style="transition-delay:180ms;">
-        <span class="provas-quote" aria-hidden="true">&ldquo;</span>
-        <blockquote class="provas-text">
-          Superou as expectativas. Além de entregas rigorosamente no prazo,
-          demonstraram total compreensão com a complexidade do cenário
-          regulatório.
-        </blockquote>
-        <figcaption class="provas-attr">
-          <span class="provas-name">Camila Salata</span>
-          <span class="label provas-role">Coordenadora CGIR/SEDE · ANSN</span>
-        </figcaption>
-      </figure>
-
-      <figure class="card provas-card reveal" style="transition-delay:280ms;">
-        <span class="provas-quote" aria-hidden="true">&ldquo;</span>
-        <blockquote class="provas-text">
-          Um entregável excelente que cumpre o escopo e abre caminhos. Essencial
-          para o nosso plano de crescimento com dados e IA, alinhado com as
-          expectativas dos nossos investidores.
-        </blockquote>
-        <figcaption class="provas-attr">
-          <span class="provas-name">Vasco Crivelli Visconti</span>
-          <span class="label provas-role">Chiefs Group</span>
-        </figcaption>
-      </figure>
+      {t.items.map((it, i) => (
+        <figure
+          class:list={["card", "provas-card", { "provas-card-feat": i === 0 }, "reveal"]}
+          style={`transition-delay:${80 + i * 100}ms;`}
+        >
+          <span class="provas-quote" aria-hidden="true">&ldquo;</span>
+          <blockquote class="provas-text">{it.quote}</blockquote>
+          <figcaption class="provas-attr">
+            <span class="provas-name">{it.name}</span>
+            <span class="label provas-role">{it.role}</span>
+          </figcaption>
+        </figure>
+      ))}
     </div>
   </div>
 </section>

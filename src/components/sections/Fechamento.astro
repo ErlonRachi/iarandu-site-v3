@@ -1,6 +1,10 @@
 ---
 import Aurora from "../islands/Aurora.tsx";
 import { BOOKING_URL, CONTACT_EMAIL, CAL_LINK, CAL_NAMESPACE } from "../../config";
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const tr = useTranslations(toLang(Astro.currentLocale));
+const t = tr.fechamento;
 ---
 
 <section id="vamos" class="fechamento grain" aria-labelledby="fechamento-h">
@@ -13,14 +17,11 @@ import { BOOKING_URL, CONTACT_EMAIL, CAL_LINK, CAL_NAMESPACE } from "../../confi
   <div class="wrap-narrow fechamento-inner">
     <div class="badge reveal">
       <span class="badge-dot" aria-hidden="true"></span>
-      Comece pelo diagnóstico
+      {t.badge}
     </div>
-    <h2 id="fechamento-h" class="display-xl fechamento-h" data-words>
-      A IA da sua área começa com um <span class="text-warm">diagnóstico</span>.
-    </h2>
+    <h2 id="fechamento-h" class="display-xl fechamento-h" data-words set:html={t.hHtml} />
     <p class="body-lg measure-tight fechamento-sub reveal" style="transition-delay:140ms;">
-      Um retrato honesto de onde a IA rende mais para a sua área, e o primeiro
-      caso em operação com ganho medido. É assim que começa.
+      {t.sub}
     </p>
     <div class="fechamento-cta reveal" style="transition-delay:240ms;">
       <a
@@ -32,7 +33,7 @@ import { BOOKING_URL, CONTACT_EMAIL, CAL_LINK, CAL_NAMESPACE } from "../../confi
         data-cal-link={CAL_LINK}
         data-cal-config='{"layout":"month_view"}'
       >
-        Agende um diagnóstico
+        {tr.common.bookCta}
         <span class="arrow" aria-hidden="true">→</span>
       </a>
       <a href={`mailto:${CONTACT_EMAIL}`} class="btn-ghost">we@iarandu.tech</a>

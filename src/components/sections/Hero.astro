@@ -1,5 +1,8 @@
 ---
 import Aurora from "../islands/Aurora.tsx";
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const t = useTranslations(toLang(Astro.currentLocale)).hero;
 ---
 
 <section class="hero grain" aria-labelledby="hero-h">
@@ -16,22 +19,16 @@ import Aurora from "../islands/Aurora.tsx";
   </div>
 
   <div class="wrap hero-inner">
-    <h1 id="hero-h" class="display-2xl hero-h" data-words>
-      Construímos a <span class="text-warm">camada de IA</span> que a sua área de
-      negócio precisa.
-    </h1>
+    <h1 id="hero-h" class="display-2xl hero-h" data-words set:html={t.hHtml} />
 
     <p class="body-lg measure hero-sub reveal" style="transition-delay:140ms;">
-      Complementamos sua área de tecnologia, entregamos IA para sua área de
-      negócio seguindo padrões, pipelines e arquitetura homologados.
+      {t.sub}
     </p>
 
     <div class="hero-trust reveal" style="transition-delay:340ms;">
-      <span class="label">Somos especializados em aplicações críticas para setores de alta regulação e performance</span>
+      <span class="label">{t.trustLabel}</span>
       <div class="hero-trust-row">
-        <span class="chip">Radiofármacos e farmacêutica</span>
-        <span class="chip">Serviços financeiros</span>
-        <span class="chip">Desenvolvimento de software</span>
+        {t.chips.map((c) => <span class="chip">{c}</span>)}
       </div>
     </div>
   </div>

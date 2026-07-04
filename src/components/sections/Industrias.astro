@@ -2,6 +2,9 @@
 // Industrias — regulated-industries proof of capability.
 // Surface: cream. Four cards (sector chip · industry name · body), last is the
 // "your industry" invitation. Brand is always "iarandu". Never name the client.
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const t = useTranslations(toLang(Astro.currentLocale)).industrias;
 ---
 
 <section id="industrias" class="industrias surface-cream sec">
@@ -9,57 +12,30 @@
     <header class="ind-head">
       <div class="badge reveal">
         <span class="badge-dot" aria-hidden="true"></span>
-        Indústrias
+        {t.badge}
       </div>
-      <h2 class="h2 ind-h" data-words>Trabalhamos com empresas onde falhar não é uma opção.</h2>
+      <h2 class="h2 ind-h" data-words>{t.h}</h2>
       <p class="body-lg measure ind-intro reveal" style="transition-delay:120ms;">
-        Não aprendemos compliance no seu projeto. Já operamos sob o rigor de
-        setores onde a margem de erro é mínima.
+        {t.intro}
       </p>
     </header>
 
     <div class="ind-grid">
-      <article class="card ind-card reveal" style="transition-delay:80ms;">
-        <span class="chip">Software</span>
-        <h3 class="h3 ind-name">Monitoramento de desenvolvimento e implementação de software</h3>
-        <p class="body">
-          Utilizamos IA para padronizar especificações de desenvolvimento,
-          detectando anomalias, automatizando testes, reduzindo tempo de
-          implementação e retrabalho no deploy.
-        </p>
-      </article>
-
-      <article class="card ind-card reveal" style="transition-delay:180ms;">
-        <span class="chip">Serviços financeiros</span>
-        <h3 class="h3 ind-name">Gestão de investimentos</h3>
-        <p class="body">
-          Governança e aumento de maturidade no uso de IA para servir fundos de
-          investimento e as empresas investidas. Identificação precoce de
-          tendências e capacitação de time interno.
-        </p>
-      </article>
-
-      <article class="card ind-card reveal" style="transition-delay:280ms;">
-        <span class="chip">Farmacêutica e radiofármacos</span>
-        <h3 class="h3 ind-name">Indústrias farmacêuticas e radiofármacos</h3>
-        <p class="body">
-          Automação e análise de dados, governança de processos. Do licenciamento
-          à rastreabilidade, passando por insights e treinamento, totalmente
-          auditáveis e em conformidade com ambiente regulatório robusto e
-          rigoroso.
-        </p>
-      </article>
+      {t.cards.map((c, i) => (
+        <article class="card ind-card reveal" style={`transition-delay:${80 + i * 100}ms;`}>
+          <span class="chip">{c.chip}</span>
+          <h3 class="h3 ind-name">{c.name}</h3>
+          <p class="body">{c.body}</p>
+        </article>
+      ))}
 
       <article class="card ind-card ind-card-invite reveal" style="transition-delay:380ms;">
         <span class="seed float-slow ind-card-seed" aria-hidden="true"></span>
-        <span class="chip">A sua indústria</span>
-        <h3 class="h3 ind-name">Opera sob risco regulatório?</h3>
-        <p class="body">
-          Se compliance e governança não são opcionais no seu setor, é
-          exatamente onde entregamos melhor.
-        </p>
+        <span class="chip">{t.invite.chip}</span>
+        <h3 class="h3 ind-name">{t.invite.name}</h3>
+        <p class="body">{t.invite.body}</p>
         <a href="#vamos" class="btn-ghost ind-invite-cta">
-          Vamos conversar
+          {t.invite.cta}
           <span class="arrow" aria-hidden="true">→</span>
         </a>
       </article>

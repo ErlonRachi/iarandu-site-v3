@@ -1,21 +1,11 @@
 ---
-const steps = [
-  {
-    n: "01",
-    title: "Diagnóstico",
-    body: "Um retrato honesto de dados e IA: o que dá para fazer hoje, onde estão os riscos, e o caso que rende mais.",
-  },
-  {
-    n: "02",
-    title: "Caso em operação",
-    body: "Construímos um caso real, em produção, com a mecânica de medição definida. Evidência, não promessa.",
-  },
-  {
-    n: "03",
-    title: "Time autônomo",
-    body: "O seu time co-executa e assume o volante. A cada mês, menos dependência de fornecedor.",
-  },
-];
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const t = useTranslations(toLang(Astro.currentLocale)).como;
+const steps = t.steps.map((s, i) => ({
+  n: String(i + 1).padStart(2, "0"),
+  ...s,
+}));
 ---
 
 <section id="como" class="surface-ink on-ink sec como">
@@ -23,15 +13,11 @@ const steps = [
     <header class="como-head">
       <div class="badge reveal">
         <span class="badge-dot" aria-hidden="true"></span>
-        Como funciona
+        {t.badge}
       </div>
-      <h2 class="h2 como-h" data-words>
-        Agentes assumem o trabalho bruto. O seu time fica com a decisão.
-      </h2>
+      <h2 class="h2 como-h" data-words>{t.h}</h2>
       <p class="body-lg measure como-intro reveal" style="transition-delay:120ms;">
-        Nenhum processo crítico roda sem supervisão humana. Decisão e
-        responsabilidade explícitas e auditáveis. O agente faz o trabalho
-        repetitivo; o seu time decide.
+        {t.intro}
       </p>
     </header>
 

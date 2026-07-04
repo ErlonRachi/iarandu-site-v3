@@ -2,6 +2,9 @@
 // Governanca — dark, premium enterprise-trust band.
 // Surface: ink-deep + on-ink remap. Four reveal-scale cards. Subtle floating
 // seeds at low opacity. Brand is always "iarandu".
+import { useTranslations, toLang } from "../../i18n/ui";
+
+const t = useTranslations(toLang(Astro.currentLocale)).governanca;
 ---
 
 <section id="governanca" class="governanca surface-ink-deep on-ink sec">
@@ -14,45 +17,21 @@
     <header class="gov-head">
       <div class="badge reveal">
         <span class="badge-dot" aria-hidden="true"></span>
-        Governança &amp; Segurança
+        {t.badge}
       </div>
-      <h2 class="h2 gov-h" data-words>IA pronta para auditoria.</h2>
+      <h2 class="h2 gov-h" data-words>{t.h}</h2>
       <p class="body-lg measure-tight gov-lead reveal" style="transition-delay:120ms;">
-        Trabalhamos para a TI, com os padrões da TI. A banda extra de produção
-        que o seu CTO gostaria de ter, sem disputar a fila.
+        {t.lead}
       </p>
     </header>
 
     <div class="gov-grid">
-      <article class="card gov-card reveal-scale" style="transition-delay:80ms;">
-        <h3 class="h3">Protocolo de Hiroshima</h3>
-        <p class="body">
-          Princípios internacionais de governança de IA orientam cada iniciativa.
-        </p>
-      </article>
-
-      <article class="card gov-card reveal-scale" style="transition-delay:180ms;">
-        <h3 class="h3">GDPR e LGPD</h3>
-        <p class="body">
-          Privacidade e proteção de dados nos padrões europeu e brasileiro, por
-          desenho.
-        </p>
-      </article>
-
-      <article class="card gov-card reveal-scale" style="transition-delay:280ms;">
-        <h3 class="h3">EU AI Act</h3>
-        <p class="body">
-          Classificação de risco e conformidade com a lei de IA da União Europeia.
-        </p>
-      </article>
-
-      <article class="card gov-card reveal-scale" style="transition-delay:380ms;">
-        <h3 class="h3">Zero Trust</h3>
-        <p class="body">
-          Cybersecurity com Zero Trust como padrão. Nada é confiável por padrão,
-          tudo é verificado.
-        </p>
-      </article>
+      {t.cards.map((c, i) => (
+        <article class="card gov-card reveal-scale" style={`transition-delay:${80 + i * 100}ms;`}>
+          <h3 class="h3">{c.title}</h3>
+          <p class="body">{c.body}</p>
+        </article>
+      ))}
     </div>
   </div>
 </section>

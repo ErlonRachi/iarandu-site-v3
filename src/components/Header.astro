@@ -1,33 +1,58 @@
 ---
 import { BOOKING_URL, CAL_LINK, CAL_NAMESPACE } from "../config";
 import BrandLogo from "./BrandLogo.astro";
+import {
+  useTranslations,
+  toLang,
+  languages,
+  langShort,
+  localeHome,
+  type Lang,
+} from "../i18n/ui";
+
+const lang = toLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const langs = Object.keys(languages) as Lang[];
 ---
 
 <header class="hdr" id="hdr">
   <div class="wrap hdr-inner">
-    <a href="#top" class="hdr-brand" aria-label="iarandu, início">
+    <a href={localeHome[lang]} class="hdr-brand" aria-label={t.common.homeAria}>
       <BrandLogo tone="ink" height={34} class="hdr-logo" />
     </a>
 
-    <nav class="hdr-nav" aria-label="Seções">
-      <a href="#plataforma" class="link-u">Plataforma</a>
-      <a href="#industrias" class="link-u">Indústrias</a>
-      <a href="#depoimentos" class="link-u">Depoimentos</a>
-      <a href="#socios" class="link-u">Quem somos</a>
+    <nav class="hdr-nav" aria-label={t.nav.ariaSections}>
+      <a href="#plataforma" class="link-u">{t.nav.plataforma}</a>
+      <a href="#industrias" class="link-u">{t.nav.industrias}</a>
+      <a href="#depoimentos" class="link-u">{t.nav.depoimentos}</a>
+      <a href="#socios" class="link-u">{t.nav.quemSomos}</a>
     </nav>
 
-    <a
-      href={BOOKING_URL}
-      target="_blank"
-      rel="noopener"
-      class="hdr-cta"
-      data-cal-namespace={CAL_NAMESPACE}
-      data-cal-link={CAL_LINK}
-      data-cal-config='{"layout":"month_view"}'
-    >
-      Agende um diagnóstico
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
+    <div class="hdr-end">
+      <nav class="langsw" aria-label={t.common.langLabel}>
+        {langs.map((l) => (
+          <a
+            href={localeHome[l]}
+            class:list={["langsw-item", { current: l === lang }]}
+            hreflang={l}
+            aria-current={l === lang ? "true" : undefined}
+          >{langShort[l]}</a>
+        ))}
+      </nav>
+
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener"
+        class="hdr-cta"
+        data-cal-namespace={CAL_NAMESPACE}
+        data-cal-link={CAL_LINK}
+        data-cal-config='{"layout":"month_view"}'
+      >
+        {t.common.bookCta}
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -64,6 +89,42 @@ import BrandLogo from "./BrandLogo.astro";
   }
   @media (min-width: 940px) {
     .hdr-nav { display: flex; }
+  }
+  .hdr-end {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .langsw {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .langsw-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-radius: 999px;
+    transition: color 180ms var(--ease), background-color 180ms var(--ease);
+  }
+  .langsw-item:hover { color: var(--ink); }
+  .langsw-item.current {
+    color: var(--papel-soft);
+    background: var(--nanquim);
+  }
+  @media (max-width: 560px) {
+    .langsw-item { min-width: 30px; padding: 5px 6px; }
   }
   .hdr-cta {
     display: inline-flex;

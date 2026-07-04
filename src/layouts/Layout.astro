@@ -2,6 +2,14 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import { CAL_NAMESPACE } from "../config";
+import {
+  useTranslations,
+  toLang,
+  htmlLang,
+  ogLocale,
+  localeHome,
+  type Lang,
+} from "../i18n/ui";
 
 interface Props {
   title?: string;
@@ -9,18 +17,28 @@ interface Props {
   noindex?: boolean;
 }
 
+const lang = toLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
 const {
-  title = "iarandu · a camada de IA que a sua área de negócio precisa",
-  description =
-    "Construímos a camada de IA que a sua área de negócio precisa, de forma governada, com padrões globais de referência e complementando a sua TI. Soluções para empresas em setores críticos e regulados.",
+  title = t.meta.title,
+  description = t.meta.description,
   noindex = false,
 } = Astro.props;
 
-const canonicalHref = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalHref = new URL(localeHome[lang], origin).href;
+
+// hreflang alternates — one per locale + x-default (single-page site).
+const alternates = (Object.keys(localeHome) as Lang[]).map((l) => ({
+  hreflang: htmlLang[l],
+  href: new URL(localeHome[l], origin).href,
+}));
+const xDefaultHref = new URL(localeHome.pt, origin).href;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,6 +47,10 @@ const canonicalHref = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin
 
     <link rel="icon" type="image/svg+xml" href="/brand/iarandu-avatar-transparente.svg" />
     <link rel="canonical" href={canonicalHref} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
     {noindex && <meta name="robots" content="noindex" />}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +61,7 @@ const canonicalHref = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={ogLocale[lang]} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalHref} />

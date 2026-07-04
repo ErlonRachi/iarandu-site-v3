@@ -3,27 +3,16 @@
 // Surface: cream. Three partner cards with a monogram pebble each (no people
 // photos available). Brand is always "iarandu".
 import { LINKEDIN_URL } from "../../config";
+import { useTranslations, toLang } from "../../i18n/ui";
 
-const partners = [
-  {
-    initials: "DC",
-    name: "Eduardo “Duda” Campos",
-    role: "Produtos digitais e IA",
-    bio: "Executivo de Produto, 25 anos de experiência. Passagem por Mercado Livre, Coca-Cola, Centauro e TOTVS.",
-  },
-  {
-    initials: "MR",
-    name: "Mauro Rezende",
-    role: "Plataforma e Operações",
-    bio: "27 anos de liderança em tecnologia. Passagem por Google Cloud e YouTube.",
-  },
-  {
-    initials: "ER",
-    name: "Erlon Rachi",
-    role: "Dados e Machine Learning",
-    bio: "Matemático Aplicado e Cientista de Dados, 18 anos de experiência em produtos de dados. Passagem por Kaizen Gaming (Betano) e CI&T.",
-  },
+const t = useTranslations(toLang(Astro.currentLocale)).socios;
+// Names/initials are language-neutral; role + bio come from the dictionary.
+const people = [
+  { initials: "DC", name: "Eduardo “Duda” Campos" },
+  { initials: "MR", name: "Mauro Rezende" },
+  { initials: "ER", name: "Erlon Rachi" },
 ];
+const partners = people.map((p, i) => ({ ...p, ...t.partners[i] }));
 ---
 
 <section id="socios" class="socios surface-cream sec">
@@ -31,14 +20,11 @@ const partners = [
     <header class="socios-head">
       <div class="badge reveal">
         <span class="badge-dot" aria-hidden="true"></span>
-        Quem somos
+        {t.badge}
       </div>
-      <h2 class="h2 socios-h" data-words>
-        <span class="text-warm">Décadas</span> de experiência conjunta. AI-native por construção.
-      </h2>
+      <h2 class="h2 socios-h" data-words set:html={t.hHtml} />
       <p class="body-lg measure socios-intro reveal" style="transition-delay:120ms;">
-        Menos de um ano de iarandu. Mais de três décadas de ofício em dado e IA,
-        e mais de 30 perfis no time, nem todos humanos.
+        {t.intro}
       </p>
     </header>
 
@@ -60,8 +46,7 @@ const partners = [
     </div>
 
     <p class="body-sm socios-origins reveal" style="transition-delay:120ms;">
-      CI&amp;T · Google · USP · Unicamp e outras casas onde dado e IA são ofício.
-      São Paulo · Milano.
+      {t.origins}
     </p>
   </div>
 </section>
