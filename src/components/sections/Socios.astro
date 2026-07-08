@@ -8,7 +8,6 @@ import { useTranslations, toLang } from "../../i18n/ui";
 const t = useTranslations(toLang(Astro.currentLocale)).socios;
 // Names/initials are language-neutral; role + bio come from the dictionary.
 const people = [
-  { initials: "DC", name: "Eduardo “Duda” Campos" },
   { initials: "MR", name: "Mauro Rezende" },
   { initials: "ER", name: "Erlon Rachi" },
 ];
@@ -63,7 +62,7 @@ const partners = people.map((p, i) => ({ ...p, ...t.partners[i] }));
     gap: 20px;
   }
   @media (min-width: 820px) {
-    .socios-grid { grid-template-columns: repeat(3, 1fr); }
+    .socios-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   .socios-card {

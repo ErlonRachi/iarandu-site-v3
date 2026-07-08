@@ -206,12 +206,8 @@ const pt = {
     hHtml:
       '<span class="text-warm">Décadas</span> de experiência conjunta. AI-native por construção.',
     intro:
-      "Menos de um ano de iarandu. Mais de três décadas de ofício em dado e IA, e mais de 30 perfis no time, nem todos humanos.",
+      "Menos de um ano de iarandu. Mais de quatro décadas de ofício em dado e IA, e mais de 30 perfis no time, nem todos humanos.",
     partners: [
-      {
-        role: "Produtos digitais e IA",
-        bio: "Executivo de Produto, 25 anos de experiência. Passagem por Mercado Livre, Coca-Cola, Centauro e TOTVS.",
-      },
       {
         role: "Plataforma e Operações",
         bio: "27 anos de liderança em tecnologia. Passagem por Google Cloud e YouTube.",
@@ -407,12 +403,8 @@ const en: Dict = {
     hHtml:
       '<span class="text-warm">Decades</span> of combined experience. AI-native by construction.',
     intro:
-      "Less than a year of iarandu. More than three decades of craft in data and AI, and over 30 profiles on the team — not all human.",
+      "Less than a year of iarandu. More than four decades of craft in data and AI, and over 30 profiles on the team — not all human.",
     partners: [
-      {
-        role: "Digital products & AI",
-        bio: "Product executive, 25 years' experience. Previously at Mercado Livre, Coca-Cola, Centauro and TOTVS.",
-      },
       {
         role: "Platform & Operations",
         bio: "27 years of technology leadership. Previously at Google Cloud and YouTube.",
@@ -606,12 +598,8 @@ const it: Dict = {
     hHtml:
       '<span class="text-warm">Decenni</span> di esperienza combinata. AI-native per costruzione.',
     intro:
-      "Meno di un anno di iarandu. Oltre tre decenni di mestiere in dati e IA, e più di 30 profili nel team, non tutti umani.",
+      "Meno di un anno di iarandu. Oltre quattro decenni di mestiere in dati e IA, e più di 30 profili nel team, non tutti umani.",
     partners: [
-      {
-        role: "Prodotti digitali e IA",
-        bio: "Executive di Prodotto, 25 anni di esperienza. Ha lavorato in Mercado Livre, Coca-Cola, Centauro e TOTVS.",
-      },
       {
         role: "Piattaforma e Operations",
         bio: "27 anni di leadership nella tecnologia. Ha lavorato in Google Cloud e YouTube.",
